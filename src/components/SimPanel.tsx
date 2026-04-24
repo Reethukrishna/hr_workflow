@@ -5,7 +5,7 @@ import { simulateWorkflow } from '../api/mockApi'
 type Log = { status: 'ok' | 'error' | 'warn'; message: string; time: string }
 
 export default function SimPanel() {
-  const { nodes, edges } = useWorkflowStore()
+  const { nodes } = useWorkflowStore()
   const [logs, setLogs] = useState<Log[]>([])
   const [running, setRunning] = useState(false)
   const [open, setOpen] = useState(false)
@@ -14,7 +14,7 @@ export default function SimPanel() {
     setOpen(true)
     setRunning(true)
     setLogs([])
-    const result = await simulateWorkflow(nodes, edges)
+    const result = await simulateWorkflow(nodes)
     setLogs(result as Log[])
     setRunning(false)
   }
