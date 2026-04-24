@@ -1,77 +1,84 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+# HR Workflow Designer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A visual drag-and-drop workflow builder for HR processes like onboarding, leave approval, and document verification. Built with React, TypeScript, and React Flow.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Drag and drop nodes onto a canvas
+- 5 node types: Start, Task, Approval, Automated, End
+- Click any node to configure it in the side panel
+- Connect nodes by dragging from the handle dots
+- Run a step-by-step workflow simulation
+- Export workflow as JSON
+- Delete nodes using the Delete key
+- Minimap for navigation
 
-## React Compiler
+## How to Run
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Clone the repo
 
-## Expanding the ESLint configuration
+    git clone https://github.com/Reethukrishna/hr_workflow.git
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Go into the folder
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    cd hr_workflow
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Install dependencies
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    npm install
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start the app
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+    npm run dev
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-=======
-# hr_workflow
->>>>>>> f21e44d04be01760b6e3b9a98e8e0225030053de
+Open in browser
+
+    http://localhost:5173
+
+## Node Types
+
+| Node | Color | Purpose |
+|------|-------|---------|
+| Start | Green | Entry point of the workflow |
+| Task | Blue | Human task e.g. collect documents |
+| Approval | Orange | Manager or HR approval step |
+| Automated | Pink | System action e.g. send email |
+| End | Gray | Workflow completion |
+
+## Architecture
+
+    src/
+      nodes/         - Custom React Flow node component
+      components/
+        Sidebar        - Draggable node palette
+        ConfigPanel    - Node configuration forms
+        SimPanel       - Simulation log panel
+        WorkflowDesigner - Main canvas layout
+      store/         - Zustand global state
+      api/           - Mock API (automations + simulate)
+      types/         - TypeScript interfaces
+
+## Tech Stack
+
+- React 18 + TypeScript
+- React Flow for canvas and node management
+- Zustand for global state management
+- Vite as build tool
+
+## Design Decisions
+
+- Zustand over Redux — simpler API, less boilerplate for this scope
+- React Flow — handles complex canvas logic like drag, connect, zoom out of the box
+- Mock API layer — separated from UI so it can be swapped with a real backend later
+- Per-node config forms — each node type has its own form making it easy to add new node types
+- TypeScript throughout — strict types for all node data makes the system reliable and easy to extend
+
+## What I Would Add With More Time
+
+- Undo / Redo
+- Workflow validation with visual error indicators on nodes
+- Auto layout button
+- Save and Load workflows from localStorage
+- Node templates for common HR flows
+- Real backend with database persistence
+- Authentication for HR admins
