@@ -4,10 +4,10 @@ import type { Node, Edge, Connection, NodeChange, EdgeChange } from 'reactflow'
 import type { NodeData } from '../types'
 
 interface WorkflowStore {
-  nodes: Node<NodeData>[]
+  nodes: Node[]
   edges: Edge[]
   selectedNodeId: string | null
-  addNode: (node: Node<NodeData>) => void
+  addNode: (node: Node) => void
   updateNodeData: (id: string, data: Partial<NodeData>) => void
   setSelectedNodeId: (id: string | null) => void
   onNodesChange: (changes: NodeChange[]) => void

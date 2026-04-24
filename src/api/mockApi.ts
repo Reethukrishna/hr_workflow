@@ -10,7 +10,7 @@ export async function getAutomations() {
   return AUTOMATIONS
 }
 
-export async function simulateWorkflow(nodes: any[], edges: any[]) {
+export async function simulateWorkflow(nodes: any[]) {
   await new Promise((r) => setTimeout(r, 500))
 
   const logs: { status: 'ok' | 'error' | 'warn'; message: string; time: string }[] = []

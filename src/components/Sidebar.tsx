@@ -1,4 +1,4 @@
-import { DragEvent } from 'react'
+import { type DragEvent } from 'react'
 import type { NodeType } from '../types'
 
 const NODE_TYPES: { type: NodeType; label: string; color: string; desc: string }[] = [
