@@ -2,6 +2,10 @@
 
 A visual drag-and-drop workflow builder for HR processes like onboarding, leave approval, and document verification. Built with React, TypeScript, and React Flow.
 
+## Live Demo
+
+[Click here to view the live app](https://hr-workflow-rust.vercel.app)
+
 ## Features
 
 - Drag and drop nodes onto a canvas
@@ -48,15 +52,15 @@ Open in browser
 ## Architecture
 
     src/
-      nodes/         - Custom React Flow node component
+      nodes/           - Custom React Flow node component
       components/
         Sidebar        - Draggable node palette
         ConfigPanel    - Node configuration forms
         SimPanel       - Simulation log panel
         WorkflowDesigner - Main canvas layout
-      store/         - Zustand global state
-      api/           - Mock API (automations + simulate)
-      types/         - TypeScript interfaces
+      store/           - Zustand global state
+      api/             - Mock API (automations + simulate)
+      types/           - TypeScript interfaces
 
 ## Tech Stack
 
