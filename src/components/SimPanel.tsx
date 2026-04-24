@@ -25,12 +25,12 @@ export default function SimPanel() {
   return (
     <>
       <button onClick={run} style={{
-        padding: '8px 16px',
+        padding: '7px 14px',
         background: '#378ADD',
         color: '#fff',
         border: 'none',
         borderRadius: 8,
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: 600,
         cursor: 'pointer',
         fontFamily: 'inherit',
@@ -40,19 +40,18 @@ export default function SimPanel() {
 
       {open && (
         <div style={{
-          position: 'absolute',
-          bottom: 60,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 360,
+          position: 'fixed',
+          top: 70,
+          right: 20,
+          width: 320,
           background: '#fff',
           border: '1px solid #e5e7eb',
           borderRadius: 12,
-          zIndex: 100,
-          boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+          zIndex: 99999,
+          boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
           display: 'flex',
           flexDirection: 'column',
-          maxHeight: 340,
+          maxHeight: 400,
         }}>
           <div style={{
             padding: '10px 14px',
@@ -61,33 +60,44 @@ export default function SimPanel() {
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-            <h3 style={{ fontSize: 13, fontWeight: 600, color: '#111' }}>
+            <h3 style={{ fontSize: 13, fontWeight: 600, color: '#111', margin: 0 }}>
               Simulation Log
             </h3>
             <button onClick={() => setOpen(false)} style={{
               background: 'none', border: 'none',
-              cursor: 'pointer', fontSize: 16, color: '#888',
+              cursor: 'pointer', fontSize: 18, color: '#888',
+              lineHeight: 1,
             }}>×</button>
           </div>
 
-          <div style={{ padding: '10px 14px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div style={{
+            padding: '10px 14px',
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+          }}>
             {running && (
               <p style={{ fontSize: 12, color: '#888' }}>Running simulation...</p>
             )}
             {logs.map((log, i) => (
               <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
                 <div style={{
-                  width: 18, height: 18, borderRadius: '50%',
+                  width: 20, height: 20, borderRadius: '50%',
                   background: iconColor[log.status] + '22',
                   color: iconColor[log.status],
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 10, fontWeight: 700, flexShrink: 0, marginTop: 1,
+                  display: 'flex', alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: 10, fontWeight: 700,
+                  flexShrink: 0, marginTop: 1,
                 }}>
                   {iconLabel[log.status]}
                 </div>
                 <div>
-                  <p style={{ fontSize: 12, color: '#111', lineHeight: 1.4 }}>{log.message}</p>
-                  <p style={{ fontSize: 11, color: '#aaa' }}>{log.time}</p>
+                  <p style={{ fontSize: 12, color: '#111', lineHeight: 1.4, margin: 0 }}>
+                    {log.message}
+                  </p>
+                  <p style={{ fontSize: 11, color: '#aaa', margin: 0 }}>{log.time}</p>
                 </div>
               </div>
             ))}
